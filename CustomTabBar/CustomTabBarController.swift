@@ -44,6 +44,14 @@ class CustomTabBarController: UITabBarController {
         self.setupMiddleButton()
 
     
+
+        
+        
+        
+
+        
+        
+        
     }
     
     
@@ -69,7 +77,111 @@ class CustomTabBarController: UITabBarController {
         menuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.layoutIfNeeded()
+        
+        
+        
+
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //Circle
+//        let circleLayer = CAShapeLayer()
+////        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+//        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.height - menuButton.frame.height)
+//        let radius = min(self.view.bounds.width, self.view.bounds.height)/4 - circleLayer.lineWidth/4
+//        let startAngle = CGFloat(-M_PI_2) * 2.0
+//        let endAngle = startAngle + CGFloat(M_PI * 1.0)
+//        let path = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+//        circleLayer.lineWidth = 10
+//        circleLayer.position = center
+//        circleLayer.strokeColor = UIColor.redColor().CGColor
+//        circleLayer.fillColor = UIColor.clearColor().CGColor
+//        circleLayer.path = path.CGPath
+//        circleLayer.strokeEnd = 1.0
+//        self.view.layer.addSublayer(circleLayer)
+
+        
+        
+
+        
+        let circleLayer = CAShapeLayer()
+        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.height - menuButton.frame.height)
+        let radius = min(self.view.bounds.width, self.view.bounds.height)/4 - circleLayer.lineWidth/4
+
+        let startAngle = CGFloat(-M_PI_2) * 2.0
+        let endAngle = startAngle + CGFloat(M_PI * 1.0)
+        
+        let path = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        
+        circleLayer.lineWidth = 10
+        circleLayer.position = center
+        circleLayer.strokeColor = UIColor.redColor().CGColor
+        circleLayer.fillColor = UIColor.clearColor().CGColor
+        circleLayer.path = path.CGPath
+        circleLayer.strokeEnd = 1.0
+        self.view.layer.addSublayer(circleLayer)
+
+        
+        let numTicks = 3
+        
+        for i in 1..<numTicks {
+            let angle = CGFloat(i) * CGFloat(-M_PI) / CGFloat(numTicks)
+    
+            
+            
+            let degreeAngle: Double = Double(angle) * 180 / M_PI
+            print("ANGLE:\(degreeAngle)")
+            
+            
+            
+            
+            let point = CGPoint(x: radius * cos(angle), y: radius * sin(angle))
+            path.moveToPoint(point)
+//            print("Point: \(point)")
+            
+            let fra = CGRectMake(point.x+self.view.bounds.midX-10, point.y+self.view.bounds.height - menuButton.frame.height-10, 20, 20)
+            let myFirstButton = UIButton(frame: fra)
+            myFirstButton.setTitle("✸", forState: .Normal)
+            myFirstButton.setTitleColor(UIColor.yellowColor(), forState: .Normal)
+            myFirstButton.addTarget(self, action: #selector(CustomTabBarController.buttonPressed), forControlEvents: .TouchUpInside)
+            self.view.addSubview(myFirstButton)
+
+        }
+
+        
+        
+        
+        
+
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    func buttonPressed() {
+        print("PRESSED BUTTO")
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -181,3 +293,7 @@ class CustomTabBarController: UITabBarController {
     
     
 }
+
+
+
+
