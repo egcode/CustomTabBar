@@ -19,7 +19,7 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Properties
 
-    let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+    let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
     var blurEffectView = UIVisualEffectView()
     private var effectsViewVisible = false
     var buttonsArray = Array<UIButton>()
@@ -37,13 +37,18 @@ class CustomTabBarController: UITabBarController {
             items[1].enabled = false
         }
         
+        
+//        self.tabBar.backgroundColor = UIColor.clearColor()
+        self.tabBar.shadowImage = UIImage()
+        self.tabBar.backgroundImage = UIImage(named: "tabbarBg")
+        
+        
         let offset:CGFloat = 20
         let tabBg = UIImageView(frame: CGRectMake(0, -offset, self.tabBar.frame.size.width, self.tabBar.frame.size.height+offset))
         tabBg.image = UIImage(named: "tabbarBg")
         tabBg.contentMode = UIViewContentMode.ScaleAspectFill
         self.tabBar.insertSubview(tabBg, atIndex: 0)
 
-        
         
         //Effects View
         self.setupEffectsView()
