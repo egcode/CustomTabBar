@@ -24,7 +24,7 @@ class CustomTabBarController: UITabBarController {
     private var effectsViewVisible = false
     var buttonsArray = Array<UIButton>()
     let circleButtonsSize:CGFloat = 50
-    
+    var buttonsOrigin = CGPoint()
     
     //------------------------------------------------------------------------------------------------------
     //MARK: - View lifecycle
@@ -37,14 +37,21 @@ class CustomTabBarController: UITabBarController {
             items[1].enabled = false
         }
         
-        
-//        self.tabBar.backgroundColor = UIColor.clearColor()
+        //Removing builting shadow
         self.tabBar.shadowImage = UIImage()
         self.tabBar.backgroundImage = UIImage(named: "tabbarBg")
         
-        
+        //Adding custom image
         let offset:CGFloat = 20
         let tabBg = UIImageView(frame: CGRectMake(0, -offset, self.tabBar.frame.size.width, self.tabBar.frame.size.height+offset))
+        
+//        tabBg.layer.shadowColor = UIColor(red: 157.0 / 255.0, green: 157.0 / 255.0, blue: 157.0 / 255.0, alpha: 0.5).CGColor
+        tabBg.layer.shadowColor = UIColor(red: 22.0 / 255.0, green: 22.0 / 255.0, blue: 22.0 / 255.0, alpha: 0.5).CGColor
+
+        tabBg.layer.shadowOpacity = 0.8
+        tabBg.layer.shadowRadius = 1.0
+        tabBg.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+
         tabBg.image = UIImage(named: "tabbarBg")
         tabBg.contentMode = UIViewContentMode.ScaleAspectFill
         self.tabBar.insertSubview(tabBg, atIndex: 0)
@@ -53,30 +60,53 @@ class CustomTabBarController: UITabBarController {
         //Effects View
         self.setupEffectsView()
         
-        let originMiddleButtonPoint = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.bounds.height - menuButton.frame.height - 5)
+        self.buttonsOrigin = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.bounds.height - menuButton.frame.height - 5)
 
         //Buttons
-        let button1 = UIButton(frame: CGRectMake(originMiddleButtonPoint.x, originMiddleButtonPoint.y, self.circleButtonsSize, self.circleButtonsSize))
+        let button1 = UIButton(frame: CGRectMake(
+            self.view.frame.size.width/2 - self.circleButtonsSize/2,
+            self.buttonsOrigin.y,
+            self.circleButtonsSize,
+            self.circleButtonsSize))
         button1.setTitle("1", forState: .Normal)
         button1.setTitleColor(UIColor.yellowColor(), forState: .Normal)
         button1.addTarget(self, action: #selector(CustomTabBarController.button1Pressed), forControlEvents: .TouchUpInside)
+        button1.layer.cornerRadius = CGRectGetWidth(button1.frame)/2.0
+        button1.backgroundColor = UIColor.orangeColor()
+        button1.layer.masksToBounds = true
+        button1.alpha = 0.0
         button1.enabled = false
         self.view.addSubview(button1)
-
         
-        let button2 = UIButton(frame: CGRectMake(originMiddleButtonPoint.x, originMiddleButtonPoint.y, self.circleButtonsSize, self.circleButtonsSize))
+        let button2 = UIButton(frame: CGRectMake(
+            self.view.frame.size.width/2 - self.circleButtonsSize/2,
+            self.buttonsOrigin.y,
+            self.circleButtonsSize,
+            self.circleButtonsSize))
         button2.setTitle("2", forState: .Normal)
         button2.setTitleColor(UIColor.yellowColor(), forState: .Normal)
         button2.addTarget(self, action: #selector(CustomTabBarController.button2Pressed), forControlEvents: .TouchUpInside)
         button2.enabled = false
+        button2.alpha = 0.0
+        button2.layer.cornerRadius = CGRectGetWidth(button2.frame)/2.0
+        button2.backgroundColor = UIColor.orangeColor()
+        button2.layer.masksToBounds = true
         self.view.addSubview(button2)
 
         
-        let button3 = UIButton(frame: CGRectMake(originMiddleButtonPoint.x, originMiddleButtonPoint.y, self.circleButtonsSize, self.circleButtonsSize))
+        let button3 = UIButton(frame: CGRectMake(
+            self.view.frame.size.width/2 - self.circleButtonsSize/2,
+            self.buttonsOrigin.y,
+            self.circleButtonsSize,
+            self.circleButtonsSize))
         button3.setTitle("3", forState: .Normal)
         button3.setTitleColor(UIColor.yellowColor(), forState: .Normal)
         button3.addTarget(self, action: #selector(CustomTabBarController.button3Pressed), forControlEvents: .TouchUpInside)
         button3.enabled = false
+        button3.alpha = 0.0
+        button3.layer.cornerRadius = CGRectGetWidth(button3.frame)/2.0
+        button3.backgroundColor = UIColor.orangeColor()
+        button3.layer.masksToBounds = true
         self.view.addSubview(button3)
 
         self.buttonsArray = [button1, button2, button3]
@@ -84,7 +114,7 @@ class CustomTabBarController: UITabBarController {
         
         
         //Middle Button
-        self.setupMiddleButton(originPoint: originMiddleButtonPoint)
+        self.setupMiddleButton(originPoint: buttonsOrigin)
         
         
     }
@@ -139,7 +169,7 @@ class CustomTabBarController: UITabBarController {
             y: 0,
             width: blurEffectView.frame.size.width,
             height: blurEffectView.frame.size.height))
-        incomeMessageLabel.textColor = UIColor.blackColor()
+        incomeMessageLabel.textColor = UIColor.yellowColor()
         incomeMessageLabel.text = "Super Blurred View"
         incomeMessageLabel.font = UIFont.systemFontOfSize(22.0)
         incomeMessageLabel.backgroundColor = UIColor.clearColor()
@@ -166,7 +196,7 @@ class CustomTabBarController: UITabBarController {
 
         } else {
             self.effectsViewVisible = false
-            self.animateButtonsDissapear(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize)
+            self.animateButtonsDissapear(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize, originMiddleButtonPoint: self.buttonsOrigin)
 
         }
         
@@ -236,15 +266,14 @@ class CustomTabBarController: UITabBarController {
 
     
     
-    func animateButtonsDissapear(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat) {
+    func animateButtonsDissapear(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat, originMiddleButtonPoint:CGPoint) {
         for i in 0..<buttonsArray.count {
             UIView.animateWithDuration(0.5, animations: {
                 //Moving buttons
                 let button = buttonsArray[i]
-                button.frame = CGRectMake(self.menuButton.frame.origin.x, self.menuButton.frame.origin.y, self.circleButtonsSize, self.circleButtonsSize)
-//                button.layer.cornerRadius = CGRectGetWidth(button.frame)/2.0
-//                button.backgroundColor = UIColor.orangeColor()
-//                button.layer.masksToBounds = true
+                button.frame = CGRectMake(self.view.frame.size.width/2 - self.circleButtonsSize/2, self.buttonsOrigin.y, self.circleButtonsSize, self.circleButtonsSize)
+                button.alpha = 0.0
+                button.enabled = false
                 
             })
             
@@ -293,9 +322,9 @@ class CustomTabBarController: UITabBarController {
                 //Moving buttons
                 let button = buttonsArray[i]
                 button.frame = CGRectMake(point.x+self.view.bounds.midX-buttonSize/2, point.y+self.view.bounds.height - (self.menuButton.frame.height + bottomMargin)-buttonSize/2, buttonSize, buttonSize)
-                button.layer.cornerRadius = CGRectGetWidth(button.frame)/2.0
-                button.backgroundColor = UIColor.orangeColor()
-                button.layer.masksToBounds = true
+                button.enabled = true
+                button.alpha = 1.0
+
                 
             })
             
