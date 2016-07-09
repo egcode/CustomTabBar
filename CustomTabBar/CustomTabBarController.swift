@@ -233,10 +233,8 @@ class CustomTabBarController: UITabBarController {
         let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnim.duration = 0.3
         rotationAnim.repeatCount = 1
-//        rotationAnim.fromValue = 0.0
-//        rotationAnim.toValue = Float(M_PI * 2.0)
         rotationAnim.fillMode = kCAFillModeForwards
-        rotationAnim.removedOnCompletion = true
+        rotationAnim.removedOnCompletion = false
         
         if on == true {
             rotationAnim.fromValue = 0.0
@@ -245,24 +243,20 @@ class CustomTabBarController: UITabBarController {
             rotationAnim.fromValue = Float(M_PI * 0.75)
             rotationAnim.toValue = 0.0
         }
-        
+        self.menuButton.layer.addAnimation(rotationAnim, forKey: "turn")
+
     //////scale animation
         let scaleAnimate:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimate.fromValue = 1
         scaleAnimate.toValue = 1.1
+        rotationAnim.repeatCount = 2
         scaleAnimate.duration = 0.1
+        scaleAnimate.fillMode = kCAFillModeForwards
         scaleAnimate.autoreverses = true
-        scaleAnimate.removedOnCompletion = true
+        scaleAnimate.removedOnCompletion = false
         scaleAnimate.setValue("scaleAnim", forKey: "name")
         scaleAnimate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        
-        let group = CAAnimationGroup()
-        group.duration = 1.5
-        group.animations = [scaleAnimate,rotationAnim]
-
-        self.menuButton.layer.addAnimation(group, forKey: "buttonAnim")
-        
-        
+        self.menuButton.layer.addAnimation(scaleAnimate, forKey: "scale")
     }
     
     
