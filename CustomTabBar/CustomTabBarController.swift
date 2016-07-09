@@ -192,16 +192,17 @@ class CustomTabBarController: UITabBarController {
         
         if self.effectsViewVisible == false {
             self.effectsViewVisible = true
+            self.animateButton(on: true)
             self.animateButtonsIntoSphere(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize)
 
         } else {
             self.effectsViewVisible = false
+            self.animateButton(on: false)
             self.animateButtonsDissapear(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize, originMiddleButtonPoint: self.buttonsOrigin)
 
         }
         
         self.animateEffectsView(toVisibilty: self.effectsViewVisible)
-        self.animateButton()
         
 
     }
@@ -226,22 +227,30 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Animation
     
-    func animateButton() {
+    func animateButton(on on:Bool) {
         
     ////////rotate circle
         let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnim.duration = 0.5
+        rotationAnim.duration = 0.3
         rotationAnim.repeatCount = 1
-        rotationAnim.fromValue = 0.0
-        rotationAnim.toValue = Float(M_PI * 2.0)
+//        rotationAnim.fromValue = 0.0
+//        rotationAnim.toValue = Float(M_PI * 2.0)
         rotationAnim.fillMode = kCAFillModeForwards
         rotationAnim.removedOnCompletion = true
+        
+        if on == true {
+            rotationAnim.fromValue = 0.0
+            rotationAnim.toValue = Float(M_PI * 0.75)
+        } else {
+            rotationAnim.fromValue = Float(M_PI * 0.75)
+            rotationAnim.toValue = 0.0
+        }
         
     //////scale animation
         let scaleAnimate:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimate.fromValue = 1
-        scaleAnimate.toValue = 0.9
-        scaleAnimate.duration = 0.2
+        scaleAnimate.toValue = 1.1
+        scaleAnimate.duration = 0.1
         scaleAnimate.autoreverses = true
         scaleAnimate.removedOnCompletion = true
         scaleAnimate.setValue("scaleAnim", forKey: "name")
@@ -288,7 +297,7 @@ class CustomTabBarController: UITabBarController {
         
         //Circle
         let circleLayer = CAShapeLayer()
-        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.height - menuButton.frame.height - bottomMargin)
+//        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.height - menuButton.frame.height - bottomMargin)
         
         let radius = min(self.view.bounds.width, self.view.bounds.height)/3.5 - circleLayer.lineWidth/3.5
         let startAngle = CGFloat(-M_PI_2) * 2.0
