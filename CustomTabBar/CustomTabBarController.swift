@@ -94,12 +94,11 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Setups
     
-    func setupMiddleButton(originPoint originPoint:CGPoint) {
+    private func setupMiddleButton(originPoint originPoint:CGPoint) {
         menuButton.frame.origin.x = originPoint.x
         menuButton.frame.origin.y = originPoint.y
         menuButton.backgroundColor = hartBlu
         menuButton.layer.cornerRadius = menuButton.frame.height/2
-//        menuButton.titleLabel?.font = UIFont.systemFontOfSize(60)
         menuButton.titleLabel?.font = UIFont.init(name: "Courier", size: 60)
         menuButton.setTitleColor(hartBlueberry, forState: UIControlState.Highlighted)
         menuButton.setTitle("+", forState: .Normal)
@@ -115,7 +114,7 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    func setupCircleButtons() {
+    private func setupCircleButtons() {
         for button in self.buttonsArray {
             button.frame = CGRectMake(
                 self.view.frame.size.width/2 - button.frame.size.width/2,
@@ -138,6 +137,21 @@ class CustomTabBarController: UITabBarController {
         blurEffectView.frame = someFrame
         blurEffectView.alpha = 0
         self.view.addSubview(blurEffectView)
+        
+//        // Label
+//        let incomeMessageLabel = UILabel(frame: CGRect(
+//            x: 0,
+//            y: 0,
+//            width: blurEffectView.frame.size.width,
+//            height: blurEffectView.frame.size.height))
+//        incomeMessageLabel.textColor = UIColor.yellowColor()
+//        incomeMessageLabel.text = "Super effects view"
+//        incomeMessageLabel.font = UIFont.init(name: "Courier", size: 40)
+//        incomeMessageLabel.backgroundColor = UIColor.clearColor()
+//        incomeMessageLabel.textAlignment = NSTextAlignment.Center
+//        incomeMessageLabel.numberOfLines = 0
+//        blurEffectView.contentView.addSubview(incomeMessageLabel)
+
     }
     
     //------------------------------------------------------------------------------------------------------
@@ -155,7 +169,6 @@ class CustomTabBarController: UITabBarController {
             self.effectsViewVisible = false
             self.animateButton(on: false)
             self.animateButtonsDissapear(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize, originMiddleButtonPoint: self.buttonsOrigin)
-
         }
         
         self.animateEffectsView(toVisibilty: self.effectsViewVisible)
