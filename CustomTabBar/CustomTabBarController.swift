@@ -250,7 +250,7 @@ class CustomTabBarController: UITabBarController {
         scaleAnimate.fromValue = 1
         scaleAnimate.toValue = 1.1
         rotationAnim.repeatCount = 2
-        scaleAnimate.duration = 0.1
+        scaleAnimate.duration = 0.05
         scaleAnimate.fillMode = kCAFillModeForwards
         scaleAnimate.autoreverses = true
         scaleAnimate.removedOnCompletion = false
@@ -271,7 +271,8 @@ class CustomTabBarController: UITabBarController {
     
     func animateButtonsDissapear(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat, originMiddleButtonPoint:CGPoint) {
         for i in 0..<buttonsArray.count {
-            UIView.animateWithDuration(0.5, animations: {
+            
+            UIView.animateWithDuration(0.3, animations: {
                 //Moving buttons
                 let button = buttonsArray[i]
                 button.frame = CGRectMake(self.view.frame.size.width/2 - self.circleButtonsSize/2, self.buttonsOrigin.y, self.circleButtonsSize, self.circleButtonsSize)
@@ -279,6 +280,7 @@ class CustomTabBarController: UITabBarController {
                 button.enabled = false
                 
             })
+            
             
         }
     }
@@ -298,13 +300,13 @@ class CustomTabBarController: UITabBarController {
         let endAngle = startAngle + CGFloat(M_PI * 1.0)
         let path = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         
-        //        circleLayer.lineWidth = 10
-        //        circleLayer.position = center
-        //        circleLayer.strokeColor = UIColor.redColor().CGColor
-        //        circleLayer.fillColor = UIColor.clearColor().CGColor
-        //        circleLayer.path = path.CGPath
-        //        circleLayer.strokeEnd = 1.0
-        //        self.view.layer.addSublayer(circleLayer)
+//        circleLayer.lineWidth = 10
+//        circleLayer.position = center
+//        circleLayer.strokeColor = UIColor.redColor().CGColor
+//        circleLayer.fillColor = UIColor.clearColor().CGColor
+//        circleLayer.path = path.CGPath
+//        circleLayer.strokeEnd = 1.0
+//        self.view.layer.addSublayer(circleLayer)
         
         //Creating buttons on circle
         for i in 0..<buttonsArray.count {
@@ -318,17 +320,16 @@ class CustomTabBarController: UITabBarController {
             
             let point = CGPoint(x: radius * cos(angle), y: radius * sin(angle))
             path.moveToPoint(point)
-            //            print("Point: \(point)")
+//            print("Point: \(point)")
             
             
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 //Moving buttons
                 let button = buttonsArray[i]
                 button.frame = CGRectMake(point.x+self.view.bounds.midX-buttonSize/2, point.y+self.view.bounds.height - (self.menuButton.frame.height + bottomMargin)-buttonSize/2, buttonSize, buttonSize)
                 button.enabled = true
                 button.alpha = 1.0
-
-                
+                }, completion: { (complete) in
             })
             
             
