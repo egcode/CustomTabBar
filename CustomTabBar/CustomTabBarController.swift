@@ -32,9 +32,24 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Disable middle items
+//        //Disable middle items
+//        if let items = self.tabBar.items {
+//            items[1].enabled = false
+//        }
+        //Adjust items position
+        let verticalItemOffset:CGFloat = 5
+        let horizontalItemOffset:CGFloat = 10
         if let items = self.tabBar.items {
-            items[1].enabled = false
+            items[0].imageInsets = UIEdgeInsets(top: -verticalItemOffset,
+                                                left: 0,
+                                                bottom: verticalItemOffset,
+                                                right: 0)
+            items[2].imageInsets = UIEdgeInsets(top: -verticalItemOffset,
+                                                left: 0,
+                                                bottom: verticalItemOffset,
+                                                right: 0)
+            items[0].titlePositionAdjustment = UIOffset(horizontal: horizontalItemOffset, vertical: -verticalItemOffset)
+            items[2].titlePositionAdjustment = UIOffset(horizontal: -horizontalItemOffset, vertical: -verticalItemOffset)
         }
         
         //Removing builting shadow
@@ -205,9 +220,6 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    
-    
-    
     func button1Pressed() {
         print("PRESSED 111")
     }
@@ -328,20 +340,15 @@ class CustomTabBarController: UITabBarController {
                 button.alpha = 1.0
                 }, completion: { (complete) in
             })
-            
-            
         }
         
     }
-    
-
     
     
     
     
     
 }
-
 
 
 

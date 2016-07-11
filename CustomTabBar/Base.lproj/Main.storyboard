@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--Me-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="one" id="9pv-A4-QxB" customClass="FirstViewController" customModule="CustomTabBar" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,13 +47,13 @@
                             <constraint firstItem="Ob8-vT-po0" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ybg-wo-RUa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="me" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="480" y="-633"/>
         </scene>
-        <!--Middle-->
+        <!--Middle View Controller-->
         <scene sceneID="SIk-xq-9y0">
             <objects>
                 <viewController storyboardIdentifier="middle" id="gao-QT-BjX" customClass="MiddleViewController" customModule="CustomTabBar" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,13 +80,13 @@
                             <constraint firstItem="hLl-Rd-ik7" firstAttribute="centerY" secondItem="maU-0e-ldc" secondAttribute="centerY" id="n7C-Uh-hgi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Middle" id="jle-6p-I1s"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="jle-6p-I1s"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c42-iF-5OG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="865" y="-240"/>
         </scene>
-        <!--Second-->
+        <!--Notifications-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController storyboardIdentifier="two" id="8rJ-Kc-sve" customClass="SecondViewController" customModule="CustomTabBar" customModuleProvider="target" sceneMemberID="viewController">
@@ -120,7 +120,7 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="notifications" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,7 +149,7 @@
     </scenes>
     <resources>
         <image name="bg.png" width="768" height="1004"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="me" width="22" height="22"/>
+        <image name="notifications" width="22" height="22"/>
     </resources>
 </document>

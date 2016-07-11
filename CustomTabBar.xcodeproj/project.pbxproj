@@ -16,7 +16,6 @@
 		447BA0AE1D2EF47C00E7A470 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447BA0AD1D2EF47C00E7A470 /* CustomTabBarController.swift */; };
 		447BA0B21D2EF6EA00E7A470 /* MiddleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447BA0B11D2EF6EA00E7A470 /* MiddleViewController.swift */; };
 		447BA0BB1D2F1D2D00E7A470 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447BA0BA1D2F1D2D00E7A470 /* bg@2x.png */; };
-		447BA0BD1D2F1D3200E7A470 /* butImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447BA0BC1D2F1D3200E7A470 /* butImage@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		447BA0AD1D2EF47C00E7A470 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		447BA0B11D2EF6EA00E7A470 /* MiddleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleViewController.swift; sourceTree = "<group>"; };
 		447BA0BA1D2F1D2D00E7A470 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
-		447BA0BC1D2F1D3200E7A470 /* butImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "butImage@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				447BA0BA1D2F1D2D00E7A470 /* bg@2x.png */,
-				447BA0BC1D2F1D3200E7A470 /* butImage@2x.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -146,7 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				447BA0A61D2EF29D00E7A470 /* LaunchScreen.storyboard in Resources */,
-				447BA0BD1D2F1D3200E7A470 /* butImage@2x.png in Resources */,
 				447BA0A31D2EF29D00E7A470 /* Assets.xcassets in Resources */,
 				447BA0A11D2EF29D00E7A470 /* Main.storyboard in Resources */,
 				447BA0BB1D2F1D2D00E7A470 /* bg@2x.png in Resources */,
@@ -314,6 +310,7 @@
 				447BA0AC1D2EF29D00E7A470 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
