@@ -293,13 +293,15 @@ class CustomTabBarController: UITabBarController {
         
         //Circle
         let circleLayer = CAShapeLayer()
-//        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.height - menuButton.frame.height - bottomMargin)
         
-        let radius = min(self.view.bounds.width, self.view.bounds.height)/3.5 - circleLayer.lineWidth/3.5
+        let radiusValue:CGFloat = 5.5
+        let radius = min(self.view.bounds.width, self.view.bounds.height)/radiusValue - circleLayer.lineWidth/radiusValue
         let startAngle = CGFloat(-M_PI_2) * 2.0
         let endAngle = startAngle + CGFloat(M_PI * 1.0)
         let path = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         
+//        //visual circle
+//        let center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.height - menuButton.frame.height - bottomMargin)
 //        circleLayer.lineWidth = 10
 //        circleLayer.position = center
 //        circleLayer.strokeColor = UIColor.redColor().CGColor
@@ -321,7 +323,6 @@ class CustomTabBarController: UITabBarController {
             let point = CGPoint(x: radius * cos(angle), y: radius * sin(angle))
             path.moveToPoint(point)
 //            print("Point: \(point)")
-            
             
             UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 //Moving buttons
