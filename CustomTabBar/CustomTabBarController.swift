@@ -20,11 +20,12 @@ class CustomTabBarController: UITabBarController {
     //MARK: - Properties
 
     let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-    var blurEffectView = UIVisualEffectView()
-    private var effectsViewVisible = false
     var buttonsArray = Array<UIButton>()
-    let circleButtonsSize:CGFloat = 50
-    var buttonsOrigin = CGPoint()
+    let circleButtonsSize:CGFloat = 49
+    
+    private var blurEffectView = UIVisualEffectView()
+    private var effectsViewVisible = false
+    private var buttonsOrigin = CGPoint()
     
     //------------------------------------------------------------------------------------------------------
     //MARK: - View lifecycle
@@ -141,10 +142,12 @@ class CustomTabBarController: UITabBarController {
         menuButton.frame.origin.y = originPoint.y
         menuButton.backgroundColor = hartBlu
         menuButton.layer.cornerRadius = menuButton.frame.height/2
-        menuButton.titleLabel?.font = UIFont.systemFontOfSize(60)
+//        menuButton.titleLabel?.font = UIFont.systemFontOfSize(60)
+        menuButton.titleLabel?.font = UIFont.init(name: "Courier", size: 60)
         menuButton.setTitleColor(hartBlueberry, forState: UIControlState.Highlighted)
         menuButton.setTitle("+", forState: .Normal)
-        menuButton.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
+        menuButton.titleEdgeInsets = UIEdgeInsetsMake(8, 0, 0, 0)
+
         self.view.addSubview(menuButton)
         self.view.bringSubviewToFront(menuButton)
         
@@ -158,7 +161,7 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    func setupEffectsView() {
+    private func setupEffectsView() {
         
         let someFrame = CGRect(
             x: 0,
@@ -235,7 +238,7 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Animation
     
-    func animateButton(on on:Bool) {
+    private func animateButton(on on:Bool) {
         
     ////////rotate circle
         let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
@@ -269,7 +272,7 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    func animateEffectsView (toVisibilty toVisibilty:Bool) {
+    private func animateEffectsView (toVisibilty toVisibilty:Bool) {
         UIView.animateWithDuration(0.3) {
             self.blurEffectView.alpha = CGFloat(toVisibilty)
         }
@@ -277,7 +280,7 @@ class CustomTabBarController: UITabBarController {
 
     
     
-    func animateButtonsDissapear(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat, originMiddleButtonPoint:CGPoint) {
+    private func animateButtonsDissapear(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat, originMiddleButtonPoint:CGPoint) {
         for i in 0..<buttonsArray.count {
             
             UIView.animateWithDuration(0.3, animations: {
@@ -295,7 +298,7 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    func animateButtonsIntoSphere(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat) {
+    private func animateButtonsIntoSphere(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat) {
         let bottomMargin:CGFloat = 50//margin of circle
         let numTicks = buttonsArray.count //number of buttons
         
