@@ -19,10 +19,16 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Properties
 
-    let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-    var buttonsArray = Array<UIButton>()
-    let circleButtonsSize:CGFloat = 49
+    //Public
+    var buttonsArray = Array<UIButton>() {
+        didSet {
+            self.setupCircleButtons()
+        }
+    }
+    var circleButtonsSize:CGFloat = 50
     
+    //Private
+    private let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
     private var blurEffectView = UIVisualEffectView()
     private var effectsViewVisible = false
     private var buttonsOrigin = CGPoint()
@@ -33,10 +39,9 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        //Disable middle items
-//        if let items = self.tabBar.items {
-//            items[1].enabled = false
-//        }
+        //Middle button Origing
+        self.buttonsOrigin = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.bounds.height - menuButton.frame.height - 5)
+
         //Adjust items position
         let verticalItemOffset:CGFloat = 5
         let horizontalItemOffset:CGFloat = 10
@@ -72,63 +77,15 @@ class CustomTabBarController: UITabBarController {
         //Effects View
         self.setupEffectsView()
         
-        self.buttonsOrigin = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.bounds.height - menuButton.frame.height - 5)
-
-        //Buttons
-        let button1 = UIButton(frame: CGRectMake(
-            self.view.frame.size.width/2 - self.circleButtonsSize/2,
-            self.buttonsOrigin.y,
-            self.circleButtonsSize,
-            self.circleButtonsSize))
-        button1.setTitle("1", forState: .Normal)
-        button1.setTitleColor(UIColor.yellowColor(), forState: .Normal)
-        button1.addTarget(self, action: #selector(CustomTabBarController.button1Pressed), forControlEvents: .TouchUpInside)
-        button1.layer.cornerRadius = CGRectGetWidth(button1.frame)/2.0
-        button1.backgroundColor = UIColor.orangeColor()
-        button1.layer.masksToBounds = true
-        button1.alpha = 0.0
-        button1.enabled = false
-        self.view.addSubview(button1)
-        
-        let button2 = UIButton(frame: CGRectMake(
-            self.view.frame.size.width/2 - self.circleButtonsSize/2,
-            self.buttonsOrigin.y,
-            self.circleButtonsSize,
-            self.circleButtonsSize))
-        button2.setTitle("2", forState: .Normal)
-        button2.setTitleColor(UIColor.yellowColor(), forState: .Normal)
-        button2.addTarget(self, action: #selector(CustomTabBarController.button2Pressed), forControlEvents: .TouchUpInside)
-        button2.enabled = false
-        button2.alpha = 0.0
-        button2.layer.cornerRadius = CGRectGetWidth(button2.frame)/2.0
-        button2.backgroundColor = UIColor.orangeColor()
-        button2.layer.masksToBounds = true
-        self.view.addSubview(button2)
-
-        
-        let button3 = UIButton(frame: CGRectMake(
-            self.view.frame.size.width/2 - self.circleButtonsSize/2,
-            self.buttonsOrigin.y,
-            self.circleButtonsSize,
-            self.circleButtonsSize))
-        button3.setTitle("3", forState: .Normal)
-        button3.setTitleColor(UIColor.yellowColor(), forState: .Normal)
-        button3.addTarget(self, action: #selector(CustomTabBarController.button3Pressed), forControlEvents: .TouchUpInside)
-        button3.enabled = false
-        button3.alpha = 0.0
-        button3.layer.cornerRadius = CGRectGetWidth(button3.frame)/2.0
-        button3.backgroundColor = UIColor.orangeColor()
-        button3.layer.masksToBounds = true
-        self.view.addSubview(button3)
-
-        self.buttonsArray = [button1, button2, button3]
-        
-        
-        
         //Middle Button
         self.setupMiddleButton(originPoint: buttonsOrigin)
         
-        
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.bringSubviewToFront(menuButton)
     }
     
     
@@ -158,50 +115,35 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    
-    
-    
+    func setupCircleButtons() {
+        for button in self.buttonsArray {
+            button.frame = CGRectMake(
+                self.view.frame.size.width/2 - button.frame.size.width/2,
+                self.buttonsOrigin.y,
+                button.frame.size.width,
+                button.frame.size.height)
+            self.view.addSubview(button)
+        }
+    }
+
     private func setupEffectsView() {
-        
         let someFrame = CGRect(
             x: 0,
             y: 0,
-            width: view.frame.size.width,
-            height: view.frame.size.height)
-
-        
+            width: self.view.frame.size.width,
+            height: self.view.frame.size.height)
         // Blur Effect
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = someFrame
         blurEffectView.alpha = 0
-        
         self.view.addSubview(blurEffectView)
-        
-//        // Label
-//        let incomeMessageLabel = UILabel(frame: CGRect(
-//            x: 0,
-//            y: 0,
-//            width: blurEffectView.frame.size.width,
-//            height: blurEffectView.frame.size.height))
-//        incomeMessageLabel.textColor = UIColor.yellowColor()
-//        incomeMessageLabel.text = "Super Blurred View"
-//        incomeMessageLabel.font = UIFont.systemFontOfSize(22.0)
-//        incomeMessageLabel.backgroundColor = UIColor.clearColor()
-//        incomeMessageLabel.textAlignment = NSTextAlignment.Center
-//        incomeMessageLabel.numberOfLines = 0
-//        blurEffectView.contentView.addSubview(incomeMessageLabel)
-        
     }
-
-    
-    
-    
     
     //------------------------------------------------------------------------------------------------------
     //MARK: - Actions
     
-    func menuButtonAction(sender: UIButton) {
+   @objc private func menuButtonAction(sender: UIButton) {
 //        self.selectedIndex = 1
         
         if self.effectsViewVisible == false {
@@ -222,19 +164,6 @@ class CustomTabBarController: UITabBarController {
     }
     
     
-    
-    func button1Pressed() {
-        print("PRESSED 111")
-    }
-    
-    func button2Pressed() {
-        print("PRESSED 222")
-    }
-    func button3Pressed() {
-        print("PRESSED 333")
-    }
-
-
     //------------------------------------------------------------------------------------------------------
     //MARK: - Animation
     
