@@ -44,14 +44,10 @@ class CustomTabBarController: UITabBarController {
         //Adding custom image
         let offset:CGFloat = 20
         let tabBg = UIImageView(frame: CGRectMake(0, -offset, self.tabBar.frame.size.width, self.tabBar.frame.size.height+offset))
-        
-//        tabBg.layer.shadowColor = UIColor(red: 157.0 / 255.0, green: 157.0 / 255.0, blue: 157.0 / 255.0, alpha: 0.5).CGColor
-        tabBg.layer.shadowColor = UIColor(red: 22.0 / 255.0, green: 22.0 / 255.0, blue: 22.0 / 255.0, alpha: 0.5).CGColor
-
-        tabBg.layer.shadowOpacity = 0.8
-        tabBg.layer.shadowRadius = 1.0
-        tabBg.layer.shadowOffset = CGSizeMake(0.0, 2.0)
-
+        tabBg.layer.shadowColor = UIColor(red: 55.0 / 255.0, green: 55.0 / 255.0, blue: 55.0 / 255.0, alpha: 0.5).CGColor
+        tabBg.layer.shadowOpacity = 0.3
+        tabBg.layer.shadowRadius = 0.3
+        tabBg.layer.shadowOffset = CGSizeMake(0.0, -0.5)
         tabBg.image = UIImage(named: "tabbarBg")
         tabBg.contentMode = UIViewContentMode.ScaleAspectFill
         self.tabBar.insertSubview(tabBg, atIndex: 0)
@@ -231,7 +227,7 @@ class CustomTabBarController: UITabBarController {
         
     ////////rotate circle
         let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnim.duration = 0.3
+        rotationAnim.duration = 0.15
         rotationAnim.repeatCount = 1
         rotationAnim.fillMode = kCAFillModeForwards
         rotationAnim.removedOnCompletion = false
