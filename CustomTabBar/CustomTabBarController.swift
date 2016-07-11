@@ -151,32 +151,32 @@ class CustomTabBarController: UITabBarController {
         
         let someFrame = CGRect(
             x: 0,
-            y: 66,
+            y: 0,
             width: view.frame.size.width,
             height: view.frame.size.height)
+
         
         // Blur Effect
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = someFrame
         blurEffectView.alpha = 0
         
         self.view.addSubview(blurEffectView)
         
-        // Label
-        let incomeMessageLabel = UILabel(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: blurEffectView.frame.size.width,
-            height: blurEffectView.frame.size.height))
-        incomeMessageLabel.textColor = UIColor.yellowColor()
-        incomeMessageLabel.text = "Super Blurred View"
-        incomeMessageLabel.font = UIFont.systemFontOfSize(22.0)
-        incomeMessageLabel.backgroundColor = UIColor.clearColor()
-        incomeMessageLabel.textAlignment = NSTextAlignment.Center
-        incomeMessageLabel.numberOfLines = 0
-        
-        blurEffectView.contentView.addSubview(incomeMessageLabel)
+//        // Label
+//        let incomeMessageLabel = UILabel(frame: CGRect(
+//            x: 0,
+//            y: 0,
+//            width: blurEffectView.frame.size.width,
+//            height: blurEffectView.frame.size.height))
+//        incomeMessageLabel.textColor = UIColor.yellowColor()
+//        incomeMessageLabel.text = "Super Blurred View"
+//        incomeMessageLabel.font = UIFont.systemFontOfSize(22.0)
+//        incomeMessageLabel.backgroundColor = UIColor.clearColor()
+//        incomeMessageLabel.textAlignment = NSTextAlignment.Center
+//        incomeMessageLabel.numberOfLines = 0
+//        blurEffectView.contentView.addSubview(incomeMessageLabel)
         
     }
 
