@@ -127,16 +127,16 @@ class CustomTabBarController: UITabBarController {
         
         //Adding Buttons
         //Button 1
-        let button1 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"appointment")!, bgColor: UIColor.redColor(), title: "appointment") {
+        let button1 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"appointment")!, bgColor: UIColor.redColor(), title: "appointment", action: {
             print("111")
-        }
+        })
         button1.alpha = 0.0
         button1.enabled = false
         
         //Button 2
-        let button2 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"message")!, bgColor: UIColor.greenColor(), title: "message") {
+        let button2 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"message")!, bgColor: UIColor.greenColor(), title: "message", action: {
             print("222")
-        }
+        })
         button2.alpha = 0.0
         button2.enabled = false
         
