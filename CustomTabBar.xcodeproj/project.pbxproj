@@ -16,6 +16,7 @@
 		447BA0AE1D2EF47C00E7A470 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447BA0AD1D2EF47C00E7A470 /* CustomTabBarController.swift */; };
 		447BA0B21D2EF6EA00E7A470 /* MiddleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447BA0B11D2EF6EA00E7A470 /* MiddleViewController.swift */; };
 		447BA0BB1D2F1D2D00E7A470 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447BA0BA1D2F1D2D00E7A470 /* bg@2x.png */; };
+		44AE39E41D3598CC00D5ACC1 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE39E31D3598CC00D5ACC1 /* CircleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		447BA0AD1D2EF47C00E7A470 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		447BA0B11D2EF6EA00E7A470 /* MiddleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleViewController.swift; sourceTree = "<group>"; };
 		447BA0BA1D2F1D2D00E7A470 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		44AE39E31D3598CC00D5ACC1 /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				447BA0B11D2EF6EA00E7A470 /* MiddleViewController.swift */,
 				447BA09D1D2EF29D00E7A470 /* SecondViewController.swift */,
 				447BA0AD1D2EF47C00E7A470 /* CustomTabBarController.swift */,
+				44AE39E31D3598CC00D5ACC1 /* CircleButton.swift */,
 				447BA09F1D2EF29D00E7A470 /* Main.storyboard */,
 				447BA0B51D2F079900E7A470 /* images */,
 				447BA0A21D2EF29D00E7A470 /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 				447BA0B21D2EF6EA00E7A470 /* MiddleViewController.swift in Sources */,
 				447BA0AE1D2EF47C00E7A470 /* CustomTabBarController.swift in Sources */,
 				447BA09E1D2EF29D00E7A470 /* SecondViewController.swift in Sources */,
+				44AE39E41D3598CC00D5ACC1 /* CircleButton.swift in Sources */,
 				447BA09A1D2EF29D00E7A470 /* AppDelegate.swift in Sources */,
 				447BA09C1D2EF29D00E7A470 /* FirstViewController.swift in Sources */,
 			);
