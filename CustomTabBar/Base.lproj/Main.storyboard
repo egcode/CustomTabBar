@@ -51,22 +51,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="-633"/>
+            <point key="canvasLocation" x="628" y="-381"/>
         </scene>
-        <!--Middle View Controller-->
+        <!--View Controller-->
         <scene sceneID="SIk-xq-9y0">
             <objects>
-                <viewController storyboardIdentifier="middle" id="gao-QT-BjX" customClass="MiddleViewController" customModule="CustomTabBar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="middle" id="gao-QT-BjX" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="swi-ui-crm"/>
                         <viewControllerLayoutGuide type="bottom" id="tfp-Ai-Pgt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="maU-0e-ldc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="105" height="114"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIddle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLl-Rd-ik7">
-                                <rect key="frame" x="107" y="255" width="107" height="57"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLl-Rd-ik7">
+                                <rect key="frame" x="6" y="5" width="52" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="Wtw-Qu-ktu"/>
+                                    <constraint firstAttribute="height" constant="20.5" id="jiO-a0-KRu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -74,17 +78,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hLl-Rd-ik7" firstAttribute="centerX" secondItem="maU-0e-ldc" secondAttribute="centerX" id="ENm-zd-8Vb"/>
-                            <constraint firstItem="hLl-Rd-ik7" firstAttribute="top" secondItem="swi-ui-crm" secondAttribute="bottom" constant="235" id="SpJ-Mk-iUV"/>
-                            <constraint firstItem="hLl-Rd-ik7" firstAttribute="leading" secondItem="maU-0e-ldc" secondAttribute="leadingMargin" constant="91" id="d86-8m-WJB"/>
-                            <constraint firstItem="hLl-Rd-ik7" firstAttribute="centerY" secondItem="maU-0e-ldc" secondAttribute="centerY" id="n7C-Uh-hgi"/>
+                            <constraint firstItem="hLl-Rd-ik7" firstAttribute="leading" secondItem="maU-0e-ldc" secondAttribute="leadingMargin" constant="-10" id="Akr-cf-ORA"/>
+                            <constraint firstItem="hLl-Rd-ik7" firstAttribute="top" secondItem="maU-0e-ldc" secondAttribute="topMargin" constant="5" id="mT3-L4-1ox"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" enabled="NO" title="" id="jle-6p-I1s"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="105" height="114"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c42-iF-5OG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="-240"/>
+            <point key="canvasLocation" x="397.5" y="-56"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="wg7-f3-ORb">
@@ -124,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="824" y="492"/>
+            <point key="canvasLocation" x="628" y="274"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -144,7 +148,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-109" y="-78"/>
+            <point key="canvasLocation" x="79" y="-56"/>
         </scene>
     </scenes>
     <resources>
