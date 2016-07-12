@@ -247,7 +247,7 @@ class CustomTabBarController: UITabBarController {
         //Circle
         let circleLayer = CAShapeLayer()
         
-        let radiusValue:CGFloat = 5.5
+        let radiusValue:CGFloat = 4.0
         let radius = min(self.view.bounds.width, self.view.bounds.height)/radiusValue - circleLayer.lineWidth/radiusValue
         let startAngle = CGFloat(-M_PI_2) * 2.0
         let endAngle = startAngle + CGFloat(M_PI * 1.0)
