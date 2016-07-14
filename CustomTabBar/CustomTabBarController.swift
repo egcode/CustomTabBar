@@ -84,20 +84,20 @@ class CustomTabBarController: UITabBarController {
         
         
         self.tabBar.backgroundColor = UIColor.redColor()
-        //        self.tabBar.frame.height = UIScreen.mainScreen().bounds.height
+//        self.tabBar.frame.height = UIScreen.mainScreen().bounds.height
         self.tabBar.clipsToBounds = false
-        //        //Tabbar observer
-        //        self.tabBar.addObserver(self, forKeyPath: "hidden", options: [], context: nil)
+//        //Tabbar observer
+//        self.tabBar.addObserver(self, forKeyPath: "hidden", options: [], context: nil)
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //        //Circle Buttons
-        //        self.buttonsArray.removeAll()
-        //        self.setupCircleButtons()
-        //        self.view.bringSubviewToFront(menuButton)
+
+//        //Circle Buttons
+//        self.buttonsArray.removeAll()
+//        self.setupCircleButtons()
+//        self.view.bringSubviewToFront(menuButton)
         
     }
     
@@ -112,22 +112,22 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Tab Bar Observer
     
-    //    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-    //        if keyPath == "hidden" {
-    //            print("Tabar vis:\(self.tabBar.hidden)")
-    //            if self.tabBar.hidden {
-    //                self.menuButton.hidden = true
-    //            } else {
-    //                self.menuButton.hidden = false
-    //                self.view.bringSubviewToFront(menuButton)
-    //
-    //            }
-    //        }
-    //    }
-    //
-    //    deinit {
-    //        self.tabBar.removeObserver(self, forKeyPath: "hidden")
-    //    }
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        if keyPath == "hidden" {
+//            print("Tabar vis:\(self.tabBar.hidden)")
+//            if self.tabBar.hidden {
+//                self.menuButton.hidden = true
+//            } else {
+//                self.menuButton.hidden = false
+//                self.view.bringSubviewToFront(menuButton)
+//
+//            }
+//        }
+//    }
+//
+//    deinit {
+//        self.tabBar.removeObserver(self, forKeyPath: "hidden")
+//    }
     
     
     //------------------------------------------------------------------------------------------------------
@@ -142,11 +142,11 @@ class CustomTabBarController: UITabBarController {
             width: self.view.frame.size.width,
             height: self.view.frame.size.height)
         
-        //        let someFrame = CGRect(
-        //            x: 0,
-        //            y: self.view.frame.size.height,
-        //            width: self.view.frame.size.width,
-        //            height: self.view.frame.size.height)
+//        let someFrame = CGRect(
+//            x: 0,
+//            y: self.view.frame.size.height,
+//            width: self.view.frame.size.width,
+//            height: self.view.frame.size.height)
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         self.blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -380,7 +380,7 @@ extension UITabBar {
                     if button.enabled == true &&  button.alpha == 1.0 {
                         let pointForTargetView: CGPoint = button.convertPoint(point, fromView: self)
                         if CGRectContainsPoint(button.bounds, pointForTargetView) {
-                            //                            print("BUTTON")
+//                            print("BUTTON")
                             return button
                         }
                     }
@@ -391,7 +391,7 @@ extension UITabBar {
                     if effectsView.alpha == 1.0 {
                         let pointForTargetView: CGPoint = effectsView.convertPoint(point, fromView: self)
                         if CGRectContainsPoint(effectsView.bounds, pointForTargetView) {
-                            //                            print("EFFECTS")
+//                            print("EFFECTS")
                             return effectsView
                         }
                     }
@@ -402,7 +402,7 @@ extension UITabBar {
                     if button.enabled == true &&  button.alpha == 1.0 {
                         let pointForTargetView: CGPoint = button.convertPoint(point, fromView: self)
                         if CGRectContainsPoint(button.bounds, pointForTargetView) {
-                            //                            print("Circle")
+//                            print("Circle")
                             return button
                         }
                     }
