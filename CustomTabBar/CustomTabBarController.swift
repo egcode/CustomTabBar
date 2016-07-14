@@ -85,7 +85,33 @@ class CustomTabBarController: UITabBarController {
         self.buttonsArray.removeAll()
         self.setupCircleButtons()
         
+//        //Tabbar observer
+//        self.tabBar.addObserver(self, forKeyPath: "hidden", options: [], context: nil)
+
+        
     }
+    
+    
+//------------------------------------------------------------------------------------------------------
+//MARK: - Tab Bar Observer
+
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        if keyPath == "hidden" {
+//            print("Tabar vis:\(self.tabBar.hidden)")
+//            if self.tabBar.hidden {
+//                self.menuButton.hidden = true
+//            } else {
+//                self.menuButton.hidden = false
+//                self.view.bringSubviewToFront(menuButton)
+//
+//            }
+//        }
+//    }
+//
+//    deinit {
+//        self.tabBar.removeObserver(self, forKeyPath: "hidden")
+//    }
+
     
     
     //------------------------------------------------------------------------------------------------------
