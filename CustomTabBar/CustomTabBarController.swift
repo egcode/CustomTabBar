@@ -316,3 +316,67 @@ class CustomTabBarController: UITabBarController {
         
     }    
 }
+
+
+////------------------------------------------------------------------------------------------------------
+////------------------------------------------------------------------------------------------------------
+////MARK: -
+////MARK: - Extension
+//
+//extension UITabBar {
+//    
+//    @nonobjc static var menuVisible = false
+//    
+//    public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+//        
+//        if self.hidden == true || UITabBar.menuVisible == false {
+//            return super.hitTest(point, withEvent: event)
+//        }
+//        
+//        
+//        for subview in self.subviews.reverse() {
+//            
+//            if subview is UIButton {
+//                if let button = subview as? UIButton {
+//                    if button.enabled == true &&  button.alpha == 1.0 {
+//                        let pointForTargetView: CGPoint = button.convertPoint(point, fromView: self)
+//                        if CGRectContainsPoint(button.bounds, pointForTargetView) {
+//                            //                            print("BUTTON")
+//                            return button
+//                        }
+//                    }
+//                }
+//            }
+//            else if subview.isKindOfClass(UIVisualEffectView) {
+//                if let effectsView = subview as? UIVisualEffectView {
+//                    if effectsView.alpha == 1.0 {
+//                        let pointForTargetView: CGPoint = effectsView.convertPoint(point, fromView: self)
+//                        if CGRectContainsPoint(effectsView.bounds, pointForTargetView) {
+//                            //                            print("EFFECTS")
+//                            return effectsView
+//                        }
+//                    }
+//                }
+//            }
+//            else if subview.isKindOfClass(CircleButton) {
+//                if let button = subview as? CircleButton {
+//                    if button.enabled == true &&  button.alpha == 1.0 {
+//                        let pointForTargetView: CGPoint = button.convertPoint(point, fromView: self)
+//                        if CGRectContainsPoint(button.bounds, pointForTargetView) {
+//                            //                            print("Circle")
+//                            return button
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            
+//            
+//        }
+//        
+//        return super.hitTest(point, withEvent: event)
+//        
+//    }
+//    
+//}
+
