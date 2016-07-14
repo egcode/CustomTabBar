@@ -21,13 +21,14 @@ class CustomTabBarController: UITabBarController {
     var buttonsArray = Array<UIButton>()
     var circleButtonsSize:CGFloat = 50
     
-    
-    
     //Private
-    private let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    private var menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    private var fakeMenuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    
     private var blurEffectView = UIVisualEffectView()
     private var effectsViewVisible = false
     private var buttonsOrigin = CGPoint()
+    private var fakeButtonsOrigin = CGPoint()
     
     //------------------------------------------------------------------------------------------------------
     //MARK: - View lifecycle
@@ -37,7 +38,7 @@ class CustomTabBarController: UITabBarController {
         
         //Middle button Origing
         self.buttonsOrigin = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.bounds.height - menuButton.frame.height - 5)
-        self.buttonsOrigin = CGPoint(x: self.tabBar.bounds.width/2 - menuButton.frame.size.width/2, y: self.tabBar.bounds.height - menuButton.frame.height - 5)
+        self.fakeButtonsOrigin = CGPoint(x: self.tabBar.bounds.width/2 - menuButton.frame.size.width/2, y: self.tabBar.bounds.height - menuButton.frame.height - 5)
         
         
         //Adjust items position
@@ -74,86 +75,34 @@ class CustomTabBarController: UITabBarController {
         //Effects View
         self.setupEffectsView()
         
-        //Circle Buttons
-        self.setupCircleButtons()
+        //Fake Middle Button
+        self.setupFakeMiddleButton(originPoint: fakeButtonsOrigin)
         
         //Middle Button
         self.setupMiddleButton(originPoint: buttonsOrigin)
         
-        
-        
-        
-        self.tabBar.backgroundColor = UIColor.redColor()
-//        self.tabBar.frame.height = UIScreen.mainScreen().bounds.height
-        self.tabBar.clipsToBounds = false
-//        //Tabbar observer
-//        self.tabBar.addObserver(self, forKeyPath: "hidden", options: [], context: nil)
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-//        //Circle Buttons
-//        self.buttonsArray.removeAll()
-//        self.setupCircleButtons()
-//        self.view.bringSubviewToFront(menuButton)
+        //Circle Buttons
+        self.buttonsArray.removeAll()
+        self.setupCircleButtons()
         
     }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    
-    
-    //------------------------------------------------------------------------------------------------------
-    //MARK: - Tab Bar Observer
-    
-//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-//        if keyPath == "hidden" {
-//            print("Tabar vis:\(self.tabBar.hidden)")
-//            if self.tabBar.hidden {
-//                self.menuButton.hidden = true
-//            } else {
-//                self.menuButton.hidden = false
-//                self.view.bringSubviewToFront(menuButton)
-//
-//            }
-//        }
-//    }
-//
-//    deinit {
-//        self.tabBar.removeObserver(self, forKeyPath: "hidden")
-//    }
     
     
     //------------------------------------------------------------------------------------------------------
     //MARK: - Setups
     
-    
-    
     private func setupEffectsView() {
         let someFrame = CGRect(
             x: 0,
-            y: CGRectGetHeight(self.tabBar.bounds)-self.view.frame.size.height,
+            y: CGRectGetHeight(self.view.bounds)-self.view.frame.size.height,
             width: self.view.frame.size.width,
             height: self.view.frame.size.height)
-        
-//        let someFrame = CGRect(
-//            x: 0,
-//            y: self.view.frame.size.height,
-//            width: self.view.frame.size.width,
-//            height: self.view.frame.size.height)
-        
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         self.blurEffectView = UIVisualEffectView(effect: blurEffect)
         self.blurEffectView.frame = someFrame
         self.blurEffectView.alpha = 0
-        self.tabBar.addSubview(blurEffectView)
-        self.tabBar.bringSubviewToFront(blurEffectView)
+        self.view.addSubview(blurEffectView)
+        self.view.bringSubviewToFront(blurEffectView)
     }
     
     
@@ -199,7 +148,7 @@ class CustomTabBarController: UITabBarController {
                 self.buttonsOrigin.y,
                 button.frame.size.width,
                 button.frame.size.height)
-            self.tabBar.addSubview(button)
+            self.view.addSubview(button)
             button.alpha = 0.0
             button.enabled = false
         }
@@ -209,7 +158,29 @@ class CustomTabBarController: UITabBarController {
     
     
     
+    
+    
+    
+    
+    private func setupFakeMiddleButton(originPoint originPoint:CGPoint) {
+        fakeMenuButton.hidden = false
+        fakeMenuButton.frame.origin.x = originPoint.x
+        fakeMenuButton.frame.origin.y = originPoint.y
+        fakeMenuButton.backgroundColor = hartBlu
+        fakeMenuButton.layer.cornerRadius = fakeMenuButton.frame.height/2
+        fakeMenuButton.titleLabel?.font = UIFont.init(name: "Courier", size: 60)
+        fakeMenuButton.setTitleColor(hartBlueberry, forState: UIControlState.Highlighted)
+        fakeMenuButton.setTitle("+", forState: .Normal)
+        fakeMenuButton.titleEdgeInsets = UIEdgeInsetsMake(8, 0, 0, 0)
+        fakeMenuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.tabBar.insertSubview(fakeMenuButton, atIndex: 1)
+        self.tabBar.bringSubviewToFront(fakeMenuButton)
+    }
+    
+    
+    
     private func setupMiddleButton(originPoint originPoint:CGPoint) {
+        menuButton.hidden = true
         menuButton.frame.origin.x = originPoint.x
         menuButton.frame.origin.y = originPoint.y
         menuButton.backgroundColor = hartBlu
@@ -219,10 +190,8 @@ class CustomTabBarController: UITabBarController {
         menuButton.setTitle("+", forState: .Normal)
         menuButton.titleEdgeInsets = UIEdgeInsetsMake(8, 0, 0, 0)
         menuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.tabBar.addSubview(menuButton)
+        self.view.addSubview(menuButton)
         self.view.bringSubviewToFront(menuButton)
-        //        self.view.layoutIfNeeded()
     }
     
     
@@ -234,9 +203,20 @@ class CustomTabBarController: UITabBarController {
     //MARK: - Actions
     
     @objc private func menuButtonAction(sender: UIButton) {
-        //        self.selectedIndex = 1
+        
+        //Bring Everything back to front
+        self.view.bringSubviewToFront(self.blurEffectView)
+        //Align All Buttons
+        for button in self.buttonsArray {
+            self.view.bringSubviewToFront(button)
+        }
+        self.view.bringSubviewToFront(self.menuButton)
+        
+        
         
         if self.effectsViewVisible == false {
+            self.menuButton.hidden = false
+            
             self.effectsViewVisible = true
             self.animateButton(on: true)
             self.animateButtonsIntoSphere(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize)
@@ -246,34 +226,8 @@ class CustomTabBarController: UITabBarController {
             self.animateButton(on: false)
             self.animateButtonsDissapear(buttonsArray: buttonsArray, buttonSize: self.circleButtonsSize, originMiddleButtonPoint: self.buttonsOrigin)
         }
-        
         self.animateEffectsView(toVisibilty: self.effectsViewVisible)
-        
-        
     }
-    
-    
-    
-    
-    
-    func button1Pressed() {
-        print("PRESSED 1-1-1")
-    }
-    
-    func button2Pressed() {
-        print("PRESSED 2-2-2")
-    }
-    func button3Pressed() {
-        print("PRESSED 3-3-3")
-    }
-    
-    func button4Pressed() {
-        print("PRESSED 4-4-4")
-    }
-    func button5Pressed() {
-        print("PRESSED 5-5-5")
-    }
-    
     
     
     //------------------------------------------------------------------------------------------------------
@@ -311,8 +265,14 @@ class CustomTabBarController: UITabBarController {
     
     
     private func animateEffectsView (toVisibilty toVisibilty:Bool) {
-        UIView.animateWithDuration(0.3) {
+        UIView.animateWithDuration(0.3, animations: {
             self.blurEffectView.alpha = CGFloat(toVisibilty)
+        }) { (complete) in
+            if complete {
+                if toVisibilty == false {
+                    self.menuButton.hidden = true
+                }
+            }
         }
     }
     
@@ -347,74 +307,12 @@ class CustomTabBarController: UITabBarController {
             path.moveToPoint(point)
             UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 let button = buttonsArray[i]
-                button.frame = CGRectMake(point.x+self.tabBar.bounds.midX-buttonSize/2, point.y+self.tabBar.bounds.height - (self.menuButton.frame.height + bottomMargin)-buttonSize/2, buttonSize, buttonSize)
+                button.frame = CGRectMake(point.x+self.view.bounds.midX-buttonSize/2, point.y+self.view.bounds.height - (self.menuButton.frame.height + bottomMargin)-buttonSize/2, buttonSize, buttonSize)
                 button.enabled = true
                 button.alpha = 1.0
                 }, completion: { (complete) in
             })
         }
         
-    }
-}
-
-
-
-//------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------
-//MARK: -
-//MARK: - Extension
-
-extension UITabBar {
-    
-    public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        
-        if self.hidden == true {
-            return super.hitTest(point, withEvent: event)
-        }
-        
-        
-        for subview in self.subviews.reverse() {
-            
-            if subview.isKindOfClass(UIButton) {
-                if let button = subview as? UIButton {
-                    if button.enabled == true &&  button.alpha == 1.0 {
-                        let pointForTargetView: CGPoint = button.convertPoint(point, fromView: self)
-                        if CGRectContainsPoint(button.bounds, pointForTargetView) {
-//                            print("BUTTON")
-                            return button
-                        }
-                    }
-                }
-            }
-            else if subview.isKindOfClass(UIVisualEffectView) {
-                if let effectsView = subview as? UIVisualEffectView {
-                    if effectsView.alpha == 1.0 {
-                        let pointForTargetView: CGPoint = effectsView.convertPoint(point, fromView: self)
-                        if CGRectContainsPoint(effectsView.bounds, pointForTargetView) {
-//                            print("EFFECTS")
-                            return effectsView
-                        }
-                    }
-                }
-            }
-            else if subview.isKindOfClass(CircleButton) {
-                if let button = subview as? CircleButton {
-                    if button.enabled == true &&  button.alpha == 1.0 {
-                        let pointForTargetView: CGPoint = button.convertPoint(point, fromView: self)
-                        if CGRectContainsPoint(button.bounds, pointForTargetView) {
-//                            print("Circle")
-                            return button
-                        }
-                    }
-                }
-            }
-            
-            
-            
-        }
-        
-        return super.hitTest(point, withEvent: event)
-        
-    }
-    
+    }    
 }
