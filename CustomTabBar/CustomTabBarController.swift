@@ -129,6 +129,11 @@ class CustomTabBarController: UITabBarController {
         self.blurEffectView.alpha = 0
         self.view.addSubview(blurEffectView)
         self.view.bringSubviewToFront(blurEffectView)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(menuButtonAction))
+        blurEffectView.addGestureRecognizer(tap)
+
+        
     }
     
     
