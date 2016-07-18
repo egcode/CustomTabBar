@@ -235,6 +235,11 @@ class CustomTabBarController: UITabBarController {
     
     @objc private func menuButtonAction(sender: UIButton) {
         
+        
+        //Update origin, we do that because view size could change
+        self.buttonsOrigin = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.frame.height - menuButton.frame.height - 5)
+        menuButton.frame.origin.y = self.buttonsOrigin.y
+
         //Bring Everything back to front
         self.view.bringSubviewToFront(self.blurEffectView)
         //Align All Buttons
