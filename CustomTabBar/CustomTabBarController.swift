@@ -22,13 +22,13 @@ class CustomTabBarController: UITabBarController {
     var circleButtonsSize:CGFloat = 50
     
     //Private
-    private var menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-    private var fakeMenuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    fileprivate var menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    fileprivate var fakeMenuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
     
-    private var blurEffectView = UIVisualEffectView()
-    private var effectsViewVisible = false
-    private var buttonsOrigin = CGPoint()
-    private var fakeButtonsOrigin = CGPoint()
+    fileprivate var blurEffectView = UIVisualEffectView()
+    fileprivate var effectsViewVisible = false
+    fileprivate var buttonsOrigin = CGPoint()
+    fileprivate var fakeButtonsOrigin = CGPoint()
     
     //------------------------------------------------------------------------------------------------------
     //MARK: - View lifecycle
@@ -63,14 +63,14 @@ class CustomTabBarController: UITabBarController {
         
         //Adding custom image
         let offset:CGFloat = 20
-        let tabBg = UIImageView(frame: CGRectMake(0, -offset, self.tabBar.frame.size.width, self.tabBar.frame.size.height+offset))
-        tabBg.layer.shadowColor = UIColor(red: 55.0 / 255.0, green: 55.0 / 255.0, blue: 55.0 / 255.0, alpha: 0.5).CGColor
+        let tabBg = UIImageView(frame: CGRect(x: 0, y: -offset, width: self.tabBar.frame.size.width, height: self.tabBar.frame.size.height+offset))
+        tabBg.layer.shadowColor = UIColor(red: 55.0 / 255.0, green: 55.0 / 255.0, blue: 55.0 / 255.0, alpha: 0.5).cgColor
         tabBg.layer.shadowOpacity = 0.3
         tabBg.layer.shadowRadius = 0.3
-        tabBg.layer.shadowOffset = CGSizeMake(0.0, -0.5)
+        tabBg.layer.shadowOffset = CGSize(width: 0.0, height: -0.5)
         tabBg.image = UIImage(named: "tabBar")
-        tabBg.contentMode = UIViewContentMode.ScaleAspectFill
-        self.tabBar.insertSubview(tabBg, atIndex: 0)
+        tabBg.contentMode = UIViewContentMode.scaleAspectFill
+        self.tabBar.insertSubview(tabBg, at: 0)
         
         //Effects View
         self.setupEffectsView()
@@ -117,18 +117,18 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Setups
     
-    private func setupEffectsView() {
+    fileprivate func setupEffectsView() {
         let someFrame = CGRect(
             x: 0,
-            y: CGRectGetHeight(self.view.bounds)-self.view.frame.size.height,
+            y: self.view.bounds.height-self.view.frame.size.height,
             width: self.view.frame.size.width,
             height: self.view.frame.size.height)
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         self.blurEffectView = UIVisualEffectView(effect: blurEffect)
         self.blurEffectView.frame = someFrame
         self.blurEffectView.alpha = 0
         self.view.addSubview(blurEffectView)
-        self.view.bringSubviewToFront(blurEffectView)
+        self.view.bringSubview(toFront: blurEffectView)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(menuButtonAction))
         blurEffectView.addGestureRecognizer(tap)
@@ -139,7 +139,7 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    private func setupCircleButtons() {
+    fileprivate func setupCircleButtons() {
         
         //Circle buttons Size
         self.circleButtonsSize = 50
@@ -148,18 +148,18 @@ class CustomTabBarController: UITabBarController {
         
         //Adding Buttons
         //Button 1
-        let button1 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"appointment")!, bgColor: UIColor.redColor(), title: "appointment") {
+        let button1 = CircleButton(frame: CGRect(x: 0, y: 0, width: self.circleButtonsSize, height: self.circleButtonsSize), image: UIImage(named:"appointment")!, bgColor: UIColor.red, title: "appointment") {
             print("111")
         }
         
         //Button 2
-        let button2 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"message")!, bgColor: UIColor.orangeColor(), title: "message") {
+        let button2 = CircleButton(frame: CGRect(x: 0, y: 0, width: self.circleButtonsSize, height: self.circleButtonsSize), image: UIImage(named:"message")!, bgColor: UIColor.orange, title: "message") {
             print("222")
         }
         
         
         //Button 3
-        let button3 = CircleButton(frame: CGRectMake(0, 0, self.circleButtonsSize, self.circleButtonsSize), image: UIImage(named:"message")!, bgColor: UIColor.blueColor(), title: "some title") {
+        let button3 = CircleButton(frame: CGRect(x: 0, y: 0, width: self.circleButtonsSize, height: self.circleButtonsSize), image: UIImage(named:"message")!, bgColor: UIColor.blue, title: "some title") {
             print("333")
         }
         
@@ -174,14 +174,14 @@ class CustomTabBarController: UITabBarController {
         
         //Align All Buttons
         for button in self.buttonsArray {
-            button.frame = CGRectMake(
-                self.tabBar.frame.size.width/2 - button.frame.size.width/2,
-                self.buttonsOrigin.y,
-                button.frame.size.width,
-                button.frame.size.height)
+            button.frame = CGRect(
+                x: self.tabBar.frame.size.width/2 - button.frame.size.width/2,
+                y: self.buttonsOrigin.y,
+                width: button.frame.size.width,
+                height: button.frame.size.height)
             self.view.addSubview(button)
             button.alpha = 0.0
-            button.enabled = false
+            button.isEnabled = false
         }
     }
     
@@ -193,36 +193,36 @@ class CustomTabBarController: UITabBarController {
     
     
     
-    private func setupFakeMiddleButton(originPoint originPoint:CGPoint) {
-        fakeMenuButton.hidden = false
+    fileprivate func setupFakeMiddleButton(originPoint:CGPoint) {
+        fakeMenuButton.isHidden = false
         fakeMenuButton.frame.origin.x = originPoint.x
         fakeMenuButton.frame.origin.y = originPoint.y
         fakeMenuButton.backgroundColor = hartBlu
         fakeMenuButton.layer.cornerRadius = fakeMenuButton.frame.height/2
         fakeMenuButton.titleLabel?.font = UIFont.init(name: "Courier", size: 60)
-        fakeMenuButton.setTitleColor(hartBlueberry, forState: UIControlState.Highlighted)
-        fakeMenuButton.setTitle("+", forState: .Normal)
+        fakeMenuButton.setTitleColor(hartBlueberry, for: UIControlState.highlighted)
+        fakeMenuButton.setTitle("+", for: UIControlState())
         fakeMenuButton.titleEdgeInsets = UIEdgeInsetsMake(8, 0, 0, 0)
-        fakeMenuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.tabBar.insertSubview(fakeMenuButton, atIndex: 1)
-        self.tabBar.bringSubviewToFront(fakeMenuButton)
+        fakeMenuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), for: UIControlEvents.touchUpInside)
+        self.tabBar.insertSubview(fakeMenuButton, at: 1)
+        self.tabBar.bringSubview(toFront: fakeMenuButton)
     }
     
     
     
-    private func setupMiddleButton(originPoint originPoint:CGPoint) {
-        menuButton.hidden = true
+    fileprivate func setupMiddleButton(originPoint:CGPoint) {
+        menuButton.isHidden = true
         menuButton.frame.origin.x = originPoint.x
         menuButton.frame.origin.y = originPoint.y
         menuButton.backgroundColor = hartBlu
         menuButton.layer.cornerRadius = menuButton.frame.height/2
         menuButton.titleLabel?.font = UIFont.init(name: "Courier", size: 60)
-        menuButton.setTitleColor(hartBlueberry, forState: UIControlState.Highlighted)
-        menuButton.setTitle("+", forState: .Normal)
+        menuButton.setTitleColor(hartBlueberry, for: UIControlState.highlighted)
+        menuButton.setTitle("+", for: UIControlState())
         menuButton.titleEdgeInsets = UIEdgeInsetsMake(8, 0, 0, 0)
-        menuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        menuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(menuButton)
-        self.view.bringSubviewToFront(menuButton)
+        self.view.bringSubview(toFront: menuButton)
     }
     
     
@@ -233,7 +233,7 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Actions
     
-    @objc private func menuButtonAction(sender: UIButton) {
+    @objc fileprivate func menuButtonAction(_ sender: UIButton) {
         
         
         //Update origin, we do that because view size could change
@@ -241,17 +241,17 @@ class CustomTabBarController: UITabBarController {
         menuButton.frame.origin.y = self.buttonsOrigin.y
 
         //Bring Everything back to front
-        self.view.bringSubviewToFront(self.blurEffectView)
+        self.view.bringSubview(toFront: self.blurEffectView)
         //Align All Buttons
         for button in self.buttonsArray {
-            self.view.bringSubviewToFront(button)
+            self.view.bringSubview(toFront: button)
         }
-        self.view.bringSubviewToFront(self.menuButton)
+        self.view.bringSubview(toFront: self.menuButton)
         
         
         
         if self.effectsViewVisible == false {
-            self.menuButton.hidden = false
+            self.menuButton.isHidden = false
             
             self.effectsViewVisible = true
             self.animateButton(on: true)
@@ -269,22 +269,22 @@ class CustomTabBarController: UITabBarController {
     //------------------------------------------------------------------------------------------------------
     //MARK: - Animation
     
-    private func animateButton(on on:Bool) {
+    fileprivate func animateButton(on:Bool) {
         
         let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnim.duration = 0.15
         rotationAnim.repeatCount = 1
         rotationAnim.fillMode = kCAFillModeForwards
-        rotationAnim.removedOnCompletion = false
+        rotationAnim.isRemovedOnCompletion = false
         
         if on == true {
             rotationAnim.fromValue = 0.0
-            rotationAnim.toValue = Float(M_PI * 0.25)
+            rotationAnim.toValue = Float(Double.pi * 0.25)
         } else {
-            rotationAnim.fromValue = Float(M_PI * 0.25)
+            rotationAnim.fromValue = Float(Double.pi * 0.25)
             rotationAnim.toValue = 0.0
         }
-        self.menuButton.layer.addAnimation(rotationAnim, forKey: "turn")
+        self.menuButton.layer.add(rotationAnim, forKey: "turn")
         
         let scaleAnimate:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimate.fromValue = 1
@@ -293,58 +293,58 @@ class CustomTabBarController: UITabBarController {
         scaleAnimate.duration = 0.05
         scaleAnimate.fillMode = kCAFillModeForwards
         scaleAnimate.autoreverses = true
-        scaleAnimate.removedOnCompletion = false
+        scaleAnimate.isRemovedOnCompletion = false
         scaleAnimate.setValue("scaleAnim", forKey: "name")
         scaleAnimate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        self.menuButton.layer.addAnimation(scaleAnimate, forKey: "scale")
+        self.menuButton.layer.add(scaleAnimate, forKey: "scale")
     }
     
     
-    private func animateEffectsView (toVisibilty toVisibilty:Bool) {
-        UIView.animateWithDuration(0.3, animations: {
-            self.blurEffectView.alpha = CGFloat(toVisibilty)
-        }) { (complete) in
+    fileprivate func animateEffectsView (toVisibilty:Bool) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.blurEffectView.alpha = CGFloat(Int(NSNumber(value:toVisibilty)))
+        }, completion: { (complete) in
             if complete {
                 if toVisibilty == false {
-                    self.menuButton.hidden = true
+                    self.menuButton.isHidden = true
                 }
             }
-        }
+        }) 
     }
     
     
-    private func animateButtonsDissapear(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat, originMiddleButtonPoint:CGPoint) {
+    fileprivate func animateButtonsDissapear(buttonsArray:Array<UIButton>, buttonSize:CGFloat, originMiddleButtonPoint:CGPoint) {
         for i in 0..<buttonsArray.count {
             
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 let button = buttonsArray[i]
-                button.frame = CGRectMake(self.view.frame.size.width/2 - self.circleButtonsSize/2, self.buttonsOrigin.y, self.circleButtonsSize, self.circleButtonsSize)
+                button.frame = CGRect(x: self.view.frame.size.width/2 - self.circleButtonsSize/2, y: self.buttonsOrigin.y, width: self.circleButtonsSize, height: self.circleButtonsSize)
                 button.alpha = 0.0
-                button.enabled = false
+                button.isEnabled = false
             })
         }
     }
     
-    private func animateButtonsIntoSphere(buttonsArray buttonsArray:Array<UIButton>, buttonSize:CGFloat) {
+    fileprivate func animateButtonsIntoSphere(buttonsArray:Array<UIButton>, buttonSize:CGFloat) {
         let bottomMargin:CGFloat = 50
         let numButt = buttonsArray.count
         let circleLayer = CAShapeLayer()
         let radiusValue:CGFloat = 4.0
         let radius = min(self.view.bounds.width, self.view.bounds.height)/radiusValue - circleLayer.lineWidth/radiusValue
-        let startAngle = CGFloat(-M_PI_2) * 2.0
-        let endAngle = startAngle + CGFloat(M_PI * 1.0)
-        let path = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let startAngle = CGFloat(-Double.pi/2) * 2.0
+        let endAngle = startAngle + CGFloat(Double.pi * 1.0)
+        let path = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         for i in 0..<numButt {
-            var angle = CGFloat(-M_PI) / 2
+            var angle = CGFloat(-Double.pi) / 2
             if numButt > 1 {
-                angle = CGFloat(i) * CGFloat(-M_PI) / CGFloat(numButt-1)
+                angle = CGFloat(i) * CGFloat(-Double.pi) / CGFloat(numButt-1)
             }
             let point = CGPoint(x: radius * cos(angle), y: radius * sin(angle))
-            path.moveToPoint(point)
-            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            path.move(to: point)
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: {
                 let button = buttonsArray[i]
-                button.frame = CGRectMake(point.x+self.view.bounds.midX-buttonSize/2, point.y+self.view.bounds.height - (self.menuButton.frame.height + bottomMargin)-buttonSize/2, buttonSize, buttonSize)
-                button.enabled = true
+                button.frame = CGRect(x: point.x+self.view.bounds.midX-buttonSize/2, y: point.y+self.view.bounds.height - (self.menuButton.frame.height + bottomMargin)-buttonSize/2, width: buttonSize, height: buttonSize)
+                button.isEnabled = true
                 button.alpha = 1.0
                 }, completion: { (complete) in
             })

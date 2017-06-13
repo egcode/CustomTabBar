@@ -10,24 +10,24 @@ import UIKit
 
 class CircleButton: UIButton {
     
-    private var action = {}
+    fileprivate var action = {}
     
-    convenience init(frame: CGRect, image: UIImage, bgColor: UIColor, title: String, action: () -> ()) {
+    convenience init(frame: CGRect, image: UIImage, bgColor: UIColor, title: String, action: @escaping () -> ()) {
         self.init(frame: frame)
         
         self.action = action
         self.backgroundColor = bgColor
-        self.setImage(image, forState: UIControlState.Normal)
+        self.setImage(image, for: UIControlState())
 
         //Corner and shadow
-        layer.cornerRadius = CGRectGetHeight(self.bounds)/2
-        layer.shadowColor = UIColor(red: 55.0 / 255.0, green: 55.0 / 255.0, blue: 55.0 / 255.0, alpha: 0.5).CGColor
+        layer.cornerRadius = self.bounds.height/2
+        layer.shadowColor = UIColor(red: 55.0 / 255.0, green: 55.0 / 255.0, blue: 55.0 / 255.0, alpha: 0.5).cgColor
         layer.shadowOpacity = 0.9
         layer.shadowRadius = 5.0
-        layer.shadowOffset = CGSizeMake(0.0, 2.0)
+        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         
         //Add target with closure
-        self.addTarget(self, action: #selector(CircleButton.buttonTapped), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(CircleButton.buttonTapped), for: .touchUpInside)
         
         // Label
         let titleLbl = UILabel(frame: CGRect(
@@ -35,11 +35,11 @@ class CircleButton: UIButton {
             y: self.frame.size.height,
             width: self.frame.size.width*2,
             height: 30))
-        titleLbl.textColor = UIColor.blackColor()
+        titleLbl.textColor = UIColor.black
         titleLbl.text = title
-        titleLbl.font = UIFont.systemFontOfSize(11)
-        titleLbl.backgroundColor = UIColor.clearColor()
-        titleLbl.textAlignment = NSTextAlignment.Center
+        titleLbl.font = UIFont.systemFont(ofSize: 11)
+        titleLbl.backgroundColor = UIColor.clear
+        titleLbl.textAlignment = NSTextAlignment.center
         titleLbl.numberOfLines = 0
         self.addSubview(titleLbl)
 
@@ -51,7 +51,7 @@ class CircleButton: UIButton {
     
     
     
-  @objc private func buttonTapped() {
+  @objc fileprivate func buttonTapped() {
         self.action()
     }
     
