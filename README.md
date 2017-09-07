@@ -2,8 +2,6 @@
 
 Custom Tabbar with quick menu button. 
 
-<br><br>
-
 <img src="gifs/tabbar.gif" width="200">
 
 ## **Requirements for installation**
