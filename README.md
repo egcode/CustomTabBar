@@ -3,7 +3,7 @@
 Custom Tabbar with quick menu button. 
 
 <br><br>
-![Example](gifs/tabbar.gif?v=4&s=200)
+![Example](gifs/tabbar.gif?v=1&s=50)
 <br><br>
 
 
