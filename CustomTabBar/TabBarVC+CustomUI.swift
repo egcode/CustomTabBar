@@ -16,7 +16,6 @@ extension TabBarVC {
         self.buttonsOrigin = CGPoint(x: self.view.bounds.width/2 - menuButton.frame.size.width/2, y: self.view.bounds.height - menuButton.frame.height - 4)
         self.fakeButtonsOrigin = CGPoint(x: self.tabBar.bounds.width/2 - menuButton.frame.size.width/2, y: self.tabBar.bounds.height - menuButton.frame.height - 4)
         
-        
         //Adjust items position
 //        let verticalItemOffset:CGFloat = 5
 //        if let items = self.tabBar.items {
