@@ -3,7 +3,7 @@
 Custom Tabbar with quick menu button. 
 
 <br><br>
-[[ gifs/tabbar.gif | height = 100px ]]
+![Example](gifs/tabbar.gif | height = 100px){:height="50%" width="50%"}
 <br><br>
 
 
